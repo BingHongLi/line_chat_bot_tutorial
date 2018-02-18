@@ -1,2 +1,2 @@
 FROM jupyter/base-notebook
-RUN pip install flask requests line-bot-sdk
+RUN pip install Flask requests line-bot-sdk
