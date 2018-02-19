@@ -11,7 +11,7 @@ version=`cat VERSION`
 create_line_bot()
 {
 docker run --name line-chat-bot-jupyter -p 8888:8888 -p 80:5000 -v $(pwd)/material:/home/jovyan/work -d $USERNAME/$IMAGE:$version start-notebook.sh --NotebookApp.token=''
-docker run --name line-ngrok -d -p 4040 --link line-chat-bot-jupyter wernight/ngrok ngrok http line-chat-bot-jupyter:80
+docker run --name line-ngrok -d -p 4040 --link line-chat-bot-jupyter wernight/ngrok ngrok http line-chat-bot-jupyter:5000
 sleep 5s
 curl $(docker port line-ngrok 4040)/api/tunnels > tunnels.json
 docker run -v $(pwd)/tunnels.json:/tmp/tunnels.json --rm  realguess/jq jq .tunnels[1].public_url /tmp/tunnels.json 
